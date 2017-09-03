@@ -18,8 +18,8 @@ server "188.226.154.123", user: "deployer", roles: %w{app db web}
 # Don't use `:all`, it's a meta role.
 
 role :app, %w{deployer@188.226.154.123} # Моя правка !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!, my_property: :my_value
-# role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
+role :web, %w{deployer@188.226.154.123}  # %w{user1@primary.com user2@additional.com}, other_property: :other_value
+role :db,  %w{deployer@188.226.154.123}  # %w{deploy@example.com}
 
 
 
