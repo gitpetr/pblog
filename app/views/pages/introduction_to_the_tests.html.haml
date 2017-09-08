@@ -69,5 +69,67 @@
       Finished in 0.06926 seconds (files took 2.67 seconds to load)
       3 examples, 0 failures
 
+%h3.bottom0 Тестирование контроллеров
+%em (для лучшего понимания процесса)
+
+%p добавляем джем: gem 'rails-controller-testing'
+чтобы не генерировались лишние тесты добавляем конфигурацию в config/application.rb
+%pre
+  :preserve
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                      fixtures: true,
+                      view_spec: false,
+                      helper_specs: false,
+                      routing_specs: false,
+                      request_specs: false,
+                      controller_spec: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
 
 
+%p Добавить в rails-helper.rb
+config.include FactoryGirl::Syntax::Methods
+%p
+%p Если не был сгенерирован файл тестов, то генерируем:
+%q
+  %u $ rails generate rspec:controller goods
+
+
+%p
+  вот полное содержание с уже написанным тестом в сгенерированном файле:
+  %pre
+    :preserve
+      require 'rails_helper'
+
+      RSpec.describe QuestionsController, type: :controller do
+        describe 'Get #index' do
+          let(:questions) {create_list(:question, 2)}
+
+          before do
+            get :index
+          end
+
+          it 'array of all questions' do
+            expect(assigns(:questions)).to match_array(@questions)
+          end
+
+          it 'renders index view' do
+            expect(response).to render_template :index
+          end
+        end
+
+      end
+  %pre
+    :preserve
+
+      $ rspec spec/controllers/goods_controller_spec.rb
+
+      GoodsController
+        Get #index
+          array of all qoods
+          renders index view
+
+      Finished in 0.03217 seconds (files took 2.71 seconds to load)
+      2 examples, 0 failures
