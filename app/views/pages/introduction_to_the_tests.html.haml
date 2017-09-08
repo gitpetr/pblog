@@ -1,0 +1,60 @@
+%h1 Введение в Rspec
+%p Добавим джемы:
+%pre
+  :preserve
+
+    group :development, :test do
+      gem 'rspec-rails', '~> 3.6'
+      gem 'factory_girl_rails'
+    end
+%p
+  %q
+    %u $ rails g rspec:install
+%p
+  Спецификация RSpec обычно генерируется вместе с другими компонентами приложения.
+  Например, рельсы, генерирующие модель, также будут генерировать спецификационный файл RSpec
+  для модели. Если же модель сгенерировали до установки Rspec, то можно отдельно сгенерировать
+  файлы для тестов:
+%p
+  %q
+    %u $ rails generate rspec:model widget
+%p Что создаст новый файл:  spec/models/widget_spec.rb.
+%p Та же модель генератора доступна для всех спецификаций:
+%pre
+  :preserve
+
+    scaffold
+    model
+    controller
+    helper
+    view
+    mailer
+    observer
+    integration
+    feature
+    job
+
+%p
+  %h3 Простые тесты валидации модели
+%p
+  %pre
+    :preserve
+      require 'rails_helper'
+
+      RSpec.describe Counterparty, type: :model do
+        it 'validates presence of groups_counterparty_id not valid without name' do
+          expect(Counterparty.new(groups_counterparty_id: 1)).to_not be_valid
+        end
+
+        it 'validates presence of name not valid without groups_counterparty_id' do
+          expect(Counterparty.new(name: '1')).to_not be_valid
+        end
+
+        it 'vailidates presence of true' do
+          gc = GroupsCounterparty.create(name: 'qqq')
+          expect(Counterparty.new(name: 'onename', groups_counterparty_id: gc.id)).to be_valid
+        end
+
+      end
+
+%p= image_tag 'test1'
