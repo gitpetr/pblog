@@ -56,5 +56,18 @@
         end
 
       end
+%p
+  %pre
+    :preserve
+      $ rspec spec/models/counterparty_spec.rb
 
-%p= image_tag 'test1'
+      Counterparty
+        validates presence of groups_counterparty_id not valid without name
+        validates presence of name not valid without groups_counterparty_id
+        vailidates presence of true
+
+      Finished in 0.06926 seconds (files took 2.67 seconds to load)
+      3 examples, 0 failures
+
+
+
