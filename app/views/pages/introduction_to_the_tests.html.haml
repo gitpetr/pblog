@@ -103,16 +103,17 @@ config.include FactoryGirl::Syntax::Methods
     :preserve
       require 'rails_helper'
 
-      RSpec.describe QuestionsController, type: :controller do
+      RSpec.describe GoodsController, type: :controller do
+
         describe 'Get #index' do
-          let(:questions) {create_list(:question, 2)}
+          let(:goods) { create_list(:good, 2) }
 
           before do
             get :index
           end
 
-          it 'array of all questions' do
-            expect(assigns(:questions)).to match_array(@questions)
+          it 'array of all qoods' do
+            expect(assigns(:goods)).to match_array(@goods)
           end
 
           it 'renders index view' do
@@ -120,7 +121,22 @@ config.include FactoryGirl::Syntax::Methods
           end
         end
 
+        describe 'Get #show' do
+          let(:good) { create(:good) }
+
+          it 'assigns the requested good to @good' do
+            get :show, params: { id: good }
+            expect(assigns(:good)).to eq good
+          end
+
+          it 'renders show view' do
+            get :show, params: { id: good }
+            expect(response).to render_template :show
+          end
+        end
+
       end
+
   %pre
     :preserve
 
@@ -130,6 +146,10 @@ config.include FactoryGirl::Syntax::Methods
         Get #index
           array of all qoods
           renders index view
+        Get #show
+          assigns the requested good to @good
+          renders show view
 
-      Finished in 0.03217 seconds (files took 2.71 seconds to load)
-      2 examples, 0 failures
+      Finished in 0.06528 seconds (files took 2.75 seconds to load)
+      4 examples, 0 failures
+
