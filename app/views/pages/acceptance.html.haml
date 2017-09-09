@@ -1,0 +1,63 @@
+%h1 Интеграционные тесты
+%p gem 'capybara'
+%p mkdir spec/features
+%p touch spec/features/sign_in_spec.rb
+%p
+  spec/factory/users.rb
+  %pre
+    :preserve
+      FactoryGirl.define do
+        factory :user do
+          username 'myusername'
+          email 'user@test.com'
+          password '123456'
+          password_confirmation '123456'
+        end
+      end
+%p
+  \#sign_in_spec.rb
+  %pre
+    :preserve
+      require 'rails_helper'
+      feature 'Siging in', %q{
+        As an user
+        I want be able to sign in
+        } do
+
+          given(:user) { create(:user) }
+
+          scenario "Existing user try to sign in" do
+
+            #User.create!(username: 'myusername', email: 'user@test.com', password: '123456', password_confirmation: '123456')
+            visit new_user_session_path
+            fill_in 'Логин', with: user.email #'user@test.com'
+            fill_in 'Пароль', with: '123456'
+            # save_and_open_page
+            click_on 'Вход', class: 'btn btn-primary'
+            #
+            expect(page).to have_content 'Ваш интернет магазин'
+            expect(current_path).to eq root_path
+          end
+
+          scenario 'Non-existing user try to sign in' do
+            visit new_user_session_path
+            fill_in 'Логин', with: 'user1@test.com'
+            fill_in 'Пароль', with: '1234567'
+            # save_and_open_page
+            click_on 'Вход', class: 'btn btn-primary'
+            expect(page).to have_content "Забыли пароль?"
+          end
+      end
+%p
+  %pre
+    :preserve
+      $ rspec /home/best/AGEEV/apps/barguzin/spec/features/sign_in_spec.rb
+
+      Siging in
+        As an user
+        I want be able to sign in
+        Existing user try to sign in
+        Non-existing user try to sign in
+
+      Finished in 0.47976 seconds (files took 2.53 seconds to load)
+      2 examples, 0 failures
