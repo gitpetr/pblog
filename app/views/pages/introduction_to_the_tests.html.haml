@@ -89,9 +89,56 @@
     end
 
 
-%p Добавить в rails-helper.rb
-config.include FactoryGirl::Syntax::Methods
 %p
+  Добавить в rails_helper.rb
+  %u config.include FactoryGirl::Syntax::Methods
+%p
+  Добавим хелперы тестов от devise в rails_helper.rb
+  %u config.include Devise::TestHelpers, type: :controller
+%p
+  для методов требующих регистрации:
+  %br
+  mkdir spec/support
+  %br
+  touch spec/support/controller_macros.rb
+  %pre
+    :preserve
+      module ControllerMacros
+        def login_user
+          before do
+            @user = create(:user)
+            @request.env['devise.mapping'] = Devise.mappings[:user]
+            sign_in @user
+          end
+        end
+      end
+  в rails_helper.rb раскомментарить
+  %u Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # где-то стр. 23
+  %br
+  и добавить строку
+  %br
+  %u config.extend ControllerMacros, type: :controller
+
+%p
+  spec/factory/users.rb
+  %pre
+    :preserve
+      FactoryGirl.define do
+        sequence :email do |n|
+          "user\#{n}@test.com"
+        end
+
+        sequence :username do |n|
+          "myusername\#{n}"
+        end
+
+        factory :user do
+          username
+          email
+          password '123456'
+          password_confirmation '123456'
+        end
+      end
 %p Если не был сгенерирован файл тестов, то генерируем:
 %q
   %u $ rails generate rspec:controller goods
@@ -149,108 +196,111 @@ config.include FactoryGirl::Syntax::Methods
           end
         end
 
-        describe 'Get #new' do
-          before { get :new }
+          describe 'Get #new' do
+            login_user
+            before { get :new }
 
-          it 'assigns a new Qood to @good' do
-            expect(assigns(:good)).to be_a_new(Good)
-          end
-
-          it 'renders new view' do
-            expect(response).to render_template :new
-          end
-        end
-
-        describe 'Get #edit' do
-          before { get :edit, params: { id: good } }
-
-          it 'assigns the requested good to @good' do
-            expect(assigns(:good)).to eq good
-          end
-
-          it 'renders edit view' do
-            expect(response).to render_template :edit
-          end
-        end
-
-        describe 'POST #create' do
-          # login_user
-          context 'with valid attributes' do
-            it 'saves the new good in the database' do
-              expect { post :create, params: { good: attributes_for(:good) } }
-                .to change(Good, :count).by(+1)
+            it 'assigns a new Qood to @good' do
+              expect(assigns(:good)).to be_a_new(Good)
             end
 
-            it 'redirects to show view' do
-              post :create, params: { good: attributes_for(:good) }
-              # expect(response).to redirect_to good_path(assigns(:good)) # Если перенаправление на :show
-              expect(response).to redirect_to goods_path
-            end
-        end
-
-          context 'with invalid attributes' do
-            it 'does not save the good' do
-              expect { post :create, params: { good: attributes_for(:invalid_good) } }.to_not change(Good, :count)
-            end
-
-            it 're-renders new view' do
-              post :create, params: { good: attributes_for(:invalid_good) }
+            it 'renders new view' do
               expect(response).to render_template :new
             end
           end
-        end
 
-        describe 'PATCH #update' do
-          context 'valid attributes' do
-            it 'assings the requested good to @good' do
-              patch :update, params: { id: good, good: attributes_for(:good) }
+          describe 'Get #edit' do
+            login_user
+            before { get :edit, params: { id: good } }
+
+            it 'assigns the requested good to @good' do
               expect(assigns(:good)).to eq good
             end
 
-            it 'changes good attributes' do
-              patch :update, params: { id: good, good: { name: 'new name', comment: 'new comment' } }
-              good.reload
-              expect(good.name).to eq 'new name'
-              expect(good.comment).to eq 'new comment'
-            end
-
-            it 'redirects to the updated good' do
-              patch :update, params: { id: good, good: attributes_for(:good) }
-              # expect(response).to redirect_to good # eсли перенаправляется на good
-              expect(response).to redirect_to goods_path
-            end
-          end
-
-          context 'invalid attributes' do
-            before { patch :update, params: { id: good, good: { name: nil, comment: 'new comment' } } }
-
-            it 'does not change good attributes' do
-              good.reload
-              expect(good.name).to eq 'MyName'
-              expect(good.comment).to eq 'MyComment'
-            end
-
-            it 're-renders edit view' do
+            it 'renders edit view' do
               expect(response).to render_template :edit
             end
           end
-        end
 
-        describe 'DELETE #destroy' do
-          before { good }
+          describe 'POST #create' do
+            login_user
+            context 'with valid attributes' do
+              it 'saves the new good in the database' do
+                expect { post :create, params: { good: attributes_for(:good) } }
+                  .to change(Good, :count).by(+1)
+              end
 
-          it 'deletes good' do
-            expect { delete :destroy, params: { id: good } }.to change(Good, :count).by(-1)
+              it 'redirects to show view' do
+                post :create, params: { good: attributes_for(:good) }
+                # expect(response).to redirect_to good_path(assigns(:good)) # Если перенаправление на :show
+                expect(response).to redirect_to goods_path
+              end
+            end
+
+            context 'with invalid attributes' do
+              it 'does not save the good' do
+                expect { post :create, params: { good: attributes_for(:invalid_good) } }.to_not change(Good, :count)
+              end
+
+              it 're-renders new view' do
+                post :create, params: { good: attributes_for(:invalid_good) }
+                expect(response).to render_template :new
+              end
+            end
           end
 
-          it 'redirect to index view' do
-            delete :destroy, params: { id: good }
-            expect(response).to redirect_to goods_path
+          describe 'PATCH #update' do
+            login_user
+            context 'valid attributes' do
+              it 'assings the requested good to @good' do
+                patch :update, params: { id: good, good: attributes_for(:good) }
+                expect(assigns(:good)).to eq good
+              end
+
+              it 'changes good attributes' do
+                patch :update, params: { id: good, good: { name: 'new name', comment: 'new comment' } }
+                good.reload
+                expect(good.name).to eq 'new name'
+                expect(good.comment).to eq 'new comment'
+              end
+
+              it 'redirects to the updated good' do
+                patch :update, params: { id: good, good: attributes_for(:good) }
+                # expect(response).to redirect_to good # eсли перенаправляется на good
+                expect(response).to redirect_to goods_path
+              end
+            end
+
+            context 'invalid attributes' do
+              login_user
+              before { patch :update, params: { id: good, good: { name: nil, comment: 'new comment' } } }
+
+              it 'does not change good attributes' do
+                good.reload
+                expect(good.name).to eq 'MyName'
+                expect(good.comment).to eq 'MyComment'
+              end
+
+              it 're-renders edit view' do
+                expect(response).to render_template :edit
+              end
+            end
+          end
+
+          describe 'DELETE #destroy' do
+            login_user
+            before { good }
+
+            it 'deletes good' do
+              expect { delete :destroy, params: { id: good } }.to change(Good, :count).by(-1)
+            end
+
+            it 'redirect to index view' do
+              delete :destroy, params: { id: good }
+              expect(response).to redirect_to goods_path
+            end
           end
         end
-
-      end
-
   %pre
     :preserve
 
