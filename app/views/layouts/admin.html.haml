@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %title Pblog
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    .container-fluide
+      = render 'layouts/main_menu_admin'
+    .container
+      - flash.each do |name, message|
+        %div{:class => "alert alert-#{name}"}
+          = message
+      = yield
+      = yield :side_bar

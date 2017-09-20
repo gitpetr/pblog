@@ -1,0 +1,16 @@
+%nav.navbar.navbar-inverse{role: 'navigation'}
+  .container
+    .navbar-header
+      = link_to 'Блог', root_path, class: 'navbar-brand'
+    .navbar-collapse.collapse
+      - if user_signed_in?
+        %ul.nav.navbar-nav
+          %li.dropdown{role: 'presentation'}
+            = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
+              Справочники
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to 'Введение в Rspec', page_path('introduction_to_the_tests')
+              %li= link_to 'Интеграционные тесты', page_path('acceptance')
+
+      = render partial: 'layouts/user_bar'
