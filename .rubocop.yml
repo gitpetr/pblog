@@ -1,0 +1,30 @@
+#inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.4
+  Include:
+    - 'app/**/*'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/**/*'
+    - 'examples/**/*'
+    - 'Gemfile'
+    - 'app/views/**/*'
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+DotPosition:
+  EnforcedStyle: trailing
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/LineLength:
+  Max: 120

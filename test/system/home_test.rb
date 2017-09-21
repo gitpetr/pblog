@@ -1,9 +1,9 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class HomeTest < ApplicationSystemTestCase
-  test "visiting the index" do
+  test 'visiting the index' do
     visit root_url
-    assert_selector "h1", text: "Hi All!"
+    assert_selector 'h1', text: 'Hi All!'
   end
 
   test 'New Person' do
@@ -22,7 +22,7 @@ class HomeTest < ApplicationSystemTestCase
     click_on 'New Person'
     fill_in 'email[{:class=>"form-control"}]', with: 'vasya@google.com'
     click_on 'Save'
-    assert_selector "h1", text: "Persons: (2)"
+    assert_selector 'h1', text: 'Persons: (2)'
   end
 
   test 'Show Person' do

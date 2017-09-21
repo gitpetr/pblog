@@ -5,7 +5,7 @@ class Point
   end
 
   def to_s
-    "(#@x, #@y)"
+    "(#{@x}, #{@y})"
   end
 end
 

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PersonManagerTest < ActiveSupport::TestCase
-
   def setup
     @person_manager = PersonManager.new(PersonJsonApiStore.new)
     @person_factory = PersonFactory.new(@person_manager.max_id)
@@ -35,5 +34,4 @@ class PersonManagerTest < ActiveSupport::TestCase
   #   @person_manager.save_persons
   #   assert_equal(@person_manager.get_person(3), nil)
   # end
-
 end

@@ -1,11 +1,9 @@
 class PetrablogController < ApplicationController
   before_action :setup_person_manager
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
-  def index
-  end
+  before_action :set_person, only: %i[show edit update destroy]
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new
     @person = Person.new(0, {})

@@ -1,9 +1,8 @@
 class PersonsController < ApplicationController
   before_action :setup_person_manager
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: %i[show edit update destroy]
 
-  def index
-  end
+  def index; end
 
   def new
     @person = Person.new(0, {})
@@ -16,11 +15,9 @@ class PersonsController < ApplicationController
     redirect_to persons_path, success: 'Пользователь успешно добавлен'
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @person.name = params[:name]

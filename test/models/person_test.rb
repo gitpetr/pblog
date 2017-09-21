@@ -15,6 +15,4 @@ class PersonTest < ActiveSupport::TestCase
     @person = Person.new(1, 'vasya@mail.ru')
     assert_equal(1, @person.id)
   end
-
 end
-

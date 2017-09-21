@@ -2,12 +2,10 @@ class UsersController < ApplicationController
   before_action :setup_person_manager
 
   def index
-    @persons =  @person_manager.each_person { |person| {} << person }
+    @persons = @person_manager.each_person { |person| {} << person }
   end
 
-  def new
-
-  end
+  def new; end
 
   def create
     @person = @person_factory.create_person(params[:email])
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     @person_manager.person_edit(params[:id].to_i, params[:email].values.first)
-    session[:user] = { 'id' => params[:id].to_i, 'user_name' => params[:email].values.first}
+    session[:user] = { 'id' => params[:id].to_i, 'user_name' => params[:email].values.first }
     redirect_to users_path, success: 'Пользователь успешно обнавлен'
   end
 
@@ -41,5 +39,4 @@ class UsersController < ApplicationController
     @person_manager = PersonManager.new(PersonSessionStore.new(session))
     @person_factory = PersonFactory.new(@person_manager.max_id)
   end
-
 end

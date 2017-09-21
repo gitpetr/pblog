@@ -1,5 +1,4 @@
 class PersonManager
-
   def initialize(store)
     @store = store
     @persons = @store.read
@@ -10,7 +9,7 @@ class PersonManager
   end
 
   def max_id
-    @persons.keys.max.to_i  || 0
+    @persons.keys.max.to_i || 0
   end
 
   def each_person
@@ -32,7 +31,7 @@ class PersonManager
   end
 
   def remove_person(person)
-    @persons.delete(person.id.to_i)  if person
+    @persons.delete(person.id.to_i) if person
     save_persons
   end
 end
