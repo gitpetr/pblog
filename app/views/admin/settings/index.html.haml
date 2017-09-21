@@ -1,9 +1,11 @@
 %table
   %tr
     %th Key
+    %th Value
     %th
 
-  - @settings.each_key do |key|
+  - @settings.each do |key, value|
     %tr
       %td= key
+      %td= value
       %td= link_to 'edit', edit_admin_setting_path(key)
