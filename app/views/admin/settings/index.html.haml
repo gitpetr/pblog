@@ -1,0 +1,9 @@
+%table
+  %tr
+    %th Key
+    %th
+
+  - @settings.each_key do |key|
+    %tr
+      %td= key
+      %td= link_to 'edit', edit_admin_setting_path(key)

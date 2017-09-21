@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
     resource :dashboard
-    # get 'dashboards/show'
+    resources :settings
   end
 
   devise_for :admins
