@@ -14,5 +14,27 @@
 //= require jquery_ujs
 //= require rails-ujs
 //= require bootstrap
+//= require noty/jquery.noty
+//= require noty/layouts/topCenter
+//= require noty/themes/default
 //= require_self
+
+function noty_success(message){
+    noty_message('success', message);
+}
+
+function noty_error(message){
+    noty_message('error', message);
+}
+
+function noty_message(type, message){
+    noty({
+        text: message,
+        type: type,
+        dismissQueue: true,
+        timeout: 6000,
+        layout: 'topCenter',
+        theme: 'defaultTheme'
+    });
+}
 
