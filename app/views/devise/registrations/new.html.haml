@@ -1,0 +1,19 @@
+.panel.panel-default.mg-top-24
+  .panel-heading
+    .panel-title
+      %h1= t('devise.user.sign_up')
+  .panel-body
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      = f.input :email, autofocus: true
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length}
+          =t('devise.user.characters_minimum')
+          )
+      %br/
+      = f.input :password, autocomplete: "off"
+      = f.input :password_confirmation, autocomplete: "off"
+      = f.button :submit
+  .panel-footer
+    = render "devise/shared/links"

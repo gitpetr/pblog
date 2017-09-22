@@ -1,11 +1,11 @@
-%table
+%table.table.table-bordered.table-hover.mg-top-24
   %tr
-    %th Key
-    %th Value
+    %th Параметр
+    %th Значение
     %th
 
   - @settings.each do |key, value|
     %tr
-      %td= key
+      %td.td-130= key
       %td= value
-      %td= link_to 'edit', edit_admin_setting_path(key)
+      %td.td-130.td-right= link_to icon('fa-edit', 'редактировать'), edit_admin_setting_path(key)

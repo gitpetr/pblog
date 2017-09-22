@@ -1,4 +1,8 @@
-= form_for(@setting, url: admin_setting_path(@setting.var), method: 'patch') do |f|
-  %label= @setting.var
-  = f.text_area :value, rows: 10
-  = f.submit
+.mg-top-24
+  .panel.panel-default.mg-top-24
+    .panel-heading
+      %h1 Редактировать
+    .panel-body
+      = simple_form_for(@setting, url: admin_setting_path(@setting.var), method: 'patch') do |f|
+        = f.input :value, rows: 10, label: "#{@setting.var}:"
+        = f.button :submit
