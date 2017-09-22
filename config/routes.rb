@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   post 'persons/:id' => 'persons#update'
   root 'home#index'
 
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
 end
