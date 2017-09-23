@@ -11,9 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     # Сказать UserMailer отослать приветственное письмо после сохранения
-    
-    UserMailer.welcome_email(resource.email).deliver_later
-    resource.save
+    UserMailer.welcome_email(User.last).deliver_later if resource.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?

@@ -4,10 +4,10 @@
     %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
   %body
     %h1
-      Добро пожаловать на сайт http://petrablog.ru, #{@user}
+      Добро пожаловать на сайт http://petrablog.ru, #{@user.email}
     %p
       Вы успешно зарегистрировались на http://petrablog.ru,
-      ваш логин: #{@user}.
+      ваш логин: #{@user.email}.
       %br/
     %p
       Чтобы войти на сайт следуйте по ссылке: #{@url}.
