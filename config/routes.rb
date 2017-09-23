@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resource :dashboard
 
-  devise_for :users
+  devise_for :users, controllers: {
+      registrations: 'users/registrations'
+  }
+
   namespace :admin do
     resource :dashboard
     resources :settings
