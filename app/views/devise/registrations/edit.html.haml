@@ -9,14 +9,14 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %div
           Currently waiting confirmation for: #{resource.unconfirmed_email}
-      %i= (t('devise.user.leave_blank'))
+      %i.block= (t('devise.user.leave_blank'))
       = f.input :password, autocomplete: "off"
       - if @minimum_password_length
-        %em
+        %em.block
           = @minimum_password_length
           = t('devise.user.characters_minimum')
       = f.input :password_confirmation, autocomplete: "off"
-      %i= t('devise.user.current_password')
+      %i.block= t('devise.user.current_password')
       = f.input :current_password, autocomplete: "off"
       = f.button :submit
   .panel-footer
