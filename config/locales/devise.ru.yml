@@ -5,6 +5,9 @@ ru:
   devise:
     user:
       sign_up: 'Зарегистрироваться'
+      log_in: 'Войти'
+      back: 'Назад'
+      forgot_your_password: 'Забыли пароль?'
       edit: 'Редактировать'
       leave_blank: 'Оставьте как есть, если не хотите изменять'
       characters_minimum: 'символов минимум'

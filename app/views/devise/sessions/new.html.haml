@@ -1,0 +1,13 @@
+.panel.panel-default.mg-top-24
+  .panel-heading
+    .panel-title
+      %h1= t('devise.user.log_in')
+  .panel-body
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.input :email, autofocus: true
+      = f.input :password, autocomplete: "off"
+      - if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean
+      = f.submit t('devise.user.log_in')
+  .panel-footer
+    = render "devise/shared/links"
