@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     resources :settings
   end
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+      registrations: 'admins/registrations'
+  }
+
   resources :petrablog
   resources :persons
   post 'persons/:id' => 'persons#update'
