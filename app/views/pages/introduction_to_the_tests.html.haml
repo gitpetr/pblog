@@ -88,6 +88,10 @@
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
+%p
+  можно так:
+  %b $ rails generate controller StaticPages home help --no-test-framework
+  %br --no-test-framework используемую для подавления генерации дефолтных RSpec тестов
 
 %p
   Добавить в rails_helper.rb
