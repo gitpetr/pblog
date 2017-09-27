@@ -15,7 +15,7 @@
         %em.block
           = @minimum_password_length
           = t('devise.user.characters_minimum')
-      = f.input :password_confirmation, autocomplete: "off"
+      = f.input :password_confirmation, autocomplete: "off", label: 'Подтверждение пароля'
       = f.input :current_password, autocomplete: "off"
       %i.block= t('devise.user.current_password')
 
