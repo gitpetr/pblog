@@ -11,5 +11,4 @@ class Post < ApplicationRecord
   def normalize_friendly_id(string)
     string.to_slug.normalize.to_s
   end
-
 end

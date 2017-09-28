@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resource :dashboard
 
   devise_for :users, controllers: {
-      registrations: 'users/registrations'
+    registrations: 'users/registrations'
   }
 
   namespace :admin do
@@ -12,14 +12,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, controllers: {
-      registrations: 'admins/registrations'
+    registrations: 'admins/registrations'
   }
 
   resources :petrablog
   root 'home#index'
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
-
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

@@ -1,13 +1,12 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :load_model, only: [:show, :edit, :update, :destroy]
+  before_action :load_model, only: %i[show edit update destroy]
   layout 'admin'
   def index
     @posts = Post.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -22,8 +21,7 @@ class Admin::PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update post_params
@@ -40,11 +38,11 @@ class Admin::PostsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :body)
-  end
+    def post_params
+      params.require(:post).permit(:title, :body)
+    end
 
-  def load_model
-    @post = Post.friendly.find params[:id]
-  end
+    def load_model
+      @post = Post.friendly.find params[:id]
+    end
 end
