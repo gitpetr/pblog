@@ -30,6 +30,11 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+group :test do
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.2'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
+end
+
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
