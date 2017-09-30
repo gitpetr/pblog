@@ -15,7 +15,7 @@ class Admin::PostsController < ApplicationController
   def create
     @post = Post.new post_params
     if @post.save
-      redirect_to admin_posts_path
+      redirect_to admin_posts_path, success: 'Статья успешно создана'
     else
       render :new
     end

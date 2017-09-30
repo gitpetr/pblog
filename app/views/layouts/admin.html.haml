@@ -10,8 +10,5 @@
     .container-fluide
       = render 'layouts/main_menu_admin'
     .container
-      - flash.each do |name, message|
-        %div{:class => "alert alert-#{name}"}
-          = message
+      = render 'layouts/flash_messages'
       = yield
-      = yield :side_bar
