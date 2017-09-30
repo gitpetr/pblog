@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Admin::PostsController, type: :controller do
-  let(:mypost) { create(:post) }
+  subject { create(:post) }
+
   describe 'Get #index' do
     login_admin
     subject { create_list(:post, 2) }
@@ -21,7 +22,7 @@ RSpec.describe Admin::PostsController, type: :controller do
 
   describe 'Get #show' do
     login_admin
-    subject { create(:post)}
+    subject { create(:post) }
     before do
       get :show, params: { id: subject }
     end
@@ -37,11 +38,6 @@ RSpec.describe Admin::PostsController, type: :controller do
 
   describe 'Get #new' do
     login_admin
-    # before do
-    #   @admin = create(:admin)
-    #   @request.env['devise.mapping'] = Devise.mappings[:admin]
-    #   sign_in @admin
-    # end
     before { get :new }
 
     it 'assigns a new Post to @post' do
@@ -55,30 +51,29 @@ RSpec.describe Admin::PostsController, type: :controller do
 
   describe 'Get #edit' do
     login_admin
-    before { get :edit, params: { id: mypost } }
+    before { get :edit, params: { id: subject } }
 
     it 'assigns the requested post to @post' do
-      expect(assigns(:post)).to eq mypost
+      expect(assigns(:post)).to eq subject
     end
 
     it 'renders edit view' do
       expect(response).to render_template :edit
     end
   end
-  ###############
 
   describe 'POST #create' do
     context 'with valid attributes' do
       login_admin
       it 'saves the new post in the database' do
         puts "Переменная post = #{attributes_for(:post)}"
-        expect { post :create, params: { post: attributes_for(:post)} }.
+        expect { post :create, params: { post: attributes_for(:post) } }.
             to change(Post, :count)
       end
 
       it 'redirects to show view' do
         Post.delete_all
-        post :create, params: { post: attributes_for(:post)}
+        post :create, params: { post: attributes_for(:post) }
         expect(response).to redirect_to  admin_posts_path
       end
     end
@@ -90,7 +85,7 @@ RSpec.describe Admin::PostsController, type: :controller do
 
       it 're-renders new view' do
         post :create, params: { post: attributes_for(:invalid_post) }
-        expect(response).to render_template  nil
+        expect(response).to render_template nil
       end
     end
   end
@@ -99,30 +94,30 @@ RSpec.describe Admin::PostsController, type: :controller do
     login_admin
     context 'valid attributes' do
       it 'assings the requested post to @post' do
-        patch :update, params: { id: mypost, post: attributes_for(:post) }
-        expect(assigns(:post)).to eq mypost
+        patch :update, params: { id: subject, post: attributes_for(:post) }
+        expect(assigns(:post)).to eq subject
       end
 
       it 'changes post attributes' do
-        patch :update, params: { id: mypost, post: { title: 'new title', body: 'new body' } }
-        mypost.reload
-        expect(mypost.title).to eq 'new title'
-        expect(mypost.body).to eq 'new body'
+        patch :update, params: { id: subject, post: { title: 'new title', body: 'new body' } }
+        subject.reload
+        expect(subject.title).to eq 'new title'
+        expect(subject.body).to eq 'new body'
       end
 
       it 'redirects to the updated post' do
-        patch :update, params: { id: mypost, post: attributes_for(:post) }
+        patch :update, params: { id: subject, post: attributes_for(:post) }
         expect(response).to redirect_to admin_posts_path
       end
     end
 
     context 'invalid attributes' do
-      before { patch :update, params: { id: mypost, post: { title: 'new title', body: nil } } }
+      before { patch :update, params: { id: subject, post: { title: 'new title', body: nil } } }
 
       it 'does not change post attributes' do
-        mypost.reload
-        expect(mypost.title).to eq 'MyString'
-        expect(mypost.body).to eq 'MyText'
+        subject.reload
+        expect(subject.title).to eq 'MyString'
+        expect(subject.body).to eq 'MyText'
       end
 
       it 're-renders edit view' do
@@ -130,17 +125,17 @@ RSpec.describe Admin::PostsController, type: :controller do
       end
     end
   end
-  ###################
+
   describe 'DELETE #destroy' do
     login_admin
-    before { mypost }
+    before { subject }
 
     it 'deletes post' do
-      expect { delete :destroy, params: { id: mypost } }.to change(Post, :count).by(-1)
+      expect { delete :destroy, params: { id: subject } }.to change(Post, :count).by(-1)
     end
 
     it 'redirect to index view' do
-      delete :destroy, params: { id: mypost }
+      delete :destroy, params: { id: subject }
       expect(response).to redirect_to admin_posts_path
     end
   end

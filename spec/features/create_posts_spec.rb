@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "CreatePosts", type: :feature do
+RSpec.feature 'CreatePosts', type: :feature do
   given(:admin) { create :admin }
 
   scenario 'Authenticated admin create post' do

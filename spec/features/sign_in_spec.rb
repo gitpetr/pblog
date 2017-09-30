@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin Sign in", type: :feature do
+RSpec.feature 'Admin Sign in', type: :feature do
   given(:admin) { create :admin }
   scenario 'Registered Admin try to sign in' do
     # admin = Admin.create!(email: 'admin@ex.com', password: '123456', password_confirmation: '123456')
