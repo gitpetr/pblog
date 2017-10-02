@@ -1,4 +1,7 @@
 = simple_form_for [:admin, @post] do |f|
   = f.input :title
   = f.input :body
+  = image_tag @post.image.url(:smallthumb) if @post.image?
+  = f.input :remove_image, as: :boolean
+  = f.input :image
   = f.button :submit, 'Сохранить', class: 'btn btn-primary'
