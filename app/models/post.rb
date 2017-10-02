@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   validates :title, :body, presence: true
+  mount_uploader :image, ImageForPostUploader
 
   extend FriendlyId
   friendly_id :title, use: :slugged
