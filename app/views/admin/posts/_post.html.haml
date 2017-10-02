@@ -1,8 +1,8 @@
 %tbody
   %tr
     %td.td-18= image_tag post.image.url(:smallthumb), class: 'image-show' if post.image?
-    %td.td-18.td-right= post.created_at.to_s[0..10]
-    %td.td-18.td-right= post.updated_at.to_s[0..10]
+    %td.td-18.td-right= post.created_at.to_date.strftime("%d:%m:%Y")
+    %td.td-18.td-right= post.updated_at.to_date.strftime("%d:%m:%Y")
     %td= link_to post.title, [:admin, post]
     %td.td-18= link_to icon('fa-edit', 'редактировать'), edit_admin_post_path(post)
     %td.td-18= link_to icon('fa-trash', 'удалить'), [:admin, post], method: :delete, data: {confirm: 'Действительно удалить?'}
