@@ -1,6 +1,6 @@
 = simple_form_for [:admin, @post] do |f|
   = f.input :title
-  = f.input :body
+  = f.input :body, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
   = image_tag @post.image.url(:smallthumb) if @post.image?
   = f.input :remove_image, as: :boolean
   = f.input :image

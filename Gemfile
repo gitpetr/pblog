@@ -47,10 +47,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
-group :production do
-  gem 'pg'
-end
-
 gem 'babosa', '~> 1.0', '>= 1.0.2'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
@@ -65,3 +61,4 @@ gem 'rails-settings-cached', '~> 0.6.6'
 gem 'simple_form', '~> 3.5'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
+gem 'ckeditor', '~> 4.2', '>= 4.2.4'

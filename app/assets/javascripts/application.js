@@ -17,6 +17,8 @@
 //= require noty/jquery.noty
 //= require noty/layouts/topCenter
 //= require noty/themes/default
+//= require ckeditor/init
+//= require ckeditor/config
 //= require_self
 
 function noty_success(message){
