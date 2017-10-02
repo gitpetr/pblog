@@ -26,6 +26,8 @@
 .ruby-gemset
 
 config/database.yml
+config/database.yml_old
+
 config/cable.yml
 config/provision/configs/*
 config/provision/keys/*
