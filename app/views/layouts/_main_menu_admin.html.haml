@@ -1,7 +1,10 @@
 %nav.navbar.navbar-inverse{role: 'navigation'}
   .container
     .navbar-header
-      = link_to 'Блог', root_path, class: 'navbar-brand'
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag 'favicon.ico'
+        Блог
+
     .navbar-collapse.collapse
       - if admin_signed_in?
         %ul.nav.navbar-nav
