@@ -3,7 +3,7 @@
     .panel-title
       %h2 Забыли пароль?
   .panel-body
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :posts }) do |f|
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       = devise_error_messages!
       = f.input :email, autofocus: true
       = f.button :submit, value: "Вышлите, пожалуйста, на почту инструкцию по восстановлению пароля"

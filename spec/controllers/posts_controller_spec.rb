@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Admin::PostsController, type: :controller do
-  subject { create(:posts) }
+  subject { create(:post) }
 
   describe 'Get #index' do
     login_admin
-    subject { create_list(:posts, 2) }
+    subject { create_list(:post, 2) }
 
     before do
       get :index
@@ -22,13 +22,13 @@ RSpec.describe Admin::PostsController, type: :controller do
 
   describe 'Get #show' do
     login_admin
-    subject { create(:posts) }
+    subject { create(:post) }
     before do
       get :show, params: { id: subject }
     end
 
     it 'assigns the requested post to @post' do
-      expect(assigns(:posts)).to eq subject
+      expect(assigns(:post)).to eq subject
     end
 
     it 'renders show view' do
@@ -41,7 +41,7 @@ RSpec.describe Admin::PostsController, type: :controller do
     before { get :new }
 
     it 'assigns a new Post to @post' do
-      expect(assigns(:posts)).to be_a_new(Post)
+      expect(assigns(:post)).to be_a_new(Post)
     end
 
     it 'renders new view' do
@@ -54,7 +54,7 @@ RSpec.describe Admin::PostsController, type: :controller do
     before { get :edit, params: { id: subject } }
 
     it 'assigns the requested post to @post' do
-      expect(assigns(:posts)).to eq subject
+      expect(assigns(:post)).to eq subject
     end
 
     it 'renders edit view' do
@@ -66,25 +66,25 @@ RSpec.describe Admin::PostsController, type: :controller do
     context 'with valid attributes' do
       login_admin
       it 'saves the new post in the database' do
-        puts "Переменная post = #{attributes_for(:posts)}"
-        expect { post :create, params: {posts: attributes_for(:posts) } }.
+        puts "Переменная post = #{attributes_for(:post)}"
+        expect { post :create, params: { post: attributes_for(:post) } }.
             to change(Post, :count)
       end
 
       it 'redirects to show view' do
         Post.delete_all
-        post :create, params: {posts: attributes_for(:posts) }
+        post :create, params: { post: attributes_for(:post) }
         expect(response).to redirect_to  admin_posts_path
       end
     end
 
     context 'with invalid attributes' do
       it 'does not save the post' do
-        expect { post :create, params: {posts: attributes_for(:invalid_post) } }.to_not change(Post, :count)
+        expect { post :create, params: { post: attributes_for(:invalid_post) } }.to_not change(Post, :count)
       end
 
       it 're-renders new view' do
-        post :create, params: {posts: attributes_for(:invalid_post) }
+        post :create, params: { post: attributes_for(:invalid_post) }
         expect(response).to render_template nil
       end
     end
@@ -94,25 +94,25 @@ RSpec.describe Admin::PostsController, type: :controller do
     login_admin
     context 'valid attributes' do
       it 'assings the requested post to @post' do
-        patch :update, params: {id: subject, posts: attributes_for(:posts) }
-        expect(assigns(:posts)).to eq subject
+        patch :update, params: { id: subject, post: attributes_for(:post) }
+        expect(assigns(:post)).to eq subject
       end
 
       it 'changes post attributes' do
-        patch :update, params: {id: subject, posts: {title: 'new title', body: 'new body' } }
+        patch :update, params: { id: subject, post: { title: 'new title', body: 'new body' } }
         subject.reload
         expect(subject.title).to eq 'new title'
         expect(subject.body).to eq 'new body'
       end
 
       it 'redirects to the updated post' do
-        patch :update, params: {id: subject, posts: attributes_for(:posts) }
+        patch :update, params: { id: subject, post: attributes_for(:post) }
         expect(response).to redirect_to admin_posts_path
       end
     end
 
     context 'invalid attributes' do
-      before { patch :update, params: {id: subject, posts: {title: 'new title', body: nil } } }
+      before { patch :update, params: { id: subject, post: { title: 'new title', body: nil } } }
 
       it 'does not change post attributes' do
         subject.reload
