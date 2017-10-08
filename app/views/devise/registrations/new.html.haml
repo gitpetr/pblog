@@ -5,6 +5,7 @@
   .panel-body
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!
+      = f.input :username, label: t("devise.user.username") , autofocus: true
       = f.input :email, autofocus: true
       - if @minimum_password_length
         %em

@@ -4,7 +4,7 @@
       %h1= t('devise.user.log_in')
   .panel-body
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.input :email, autofocus: true
+      = f.input :login, label: t('devise.user.login'), autofocus: true
       = f.input :password, autocomplete: "off"
       - if devise_mapping.rememberable?
         = f.input :remember_me, as: :boolean
