@@ -1,5 +1,6 @@
 class Admin::SettingsController < ApplicationController
   before_action :get_setting, only: %i[edit update]
+  layout 'admin'
 
   def index
     @settings = Setting.get_all
