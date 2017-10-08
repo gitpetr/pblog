@@ -1,0 +1,4 @@
+%h1= @post.title
+.post-image= image_tag @post.image.url(:medium) if @post.image?
+
+%p= @post.body.html_safe

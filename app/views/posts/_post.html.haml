@@ -1,0 +1,8 @@
+.row
+  .col-xs-1
+    = image_tag post.image.url(:smallthumb), class: 'image-show' if post.image?
+  .col-xs-11
+    %h3= link_to post.title, post
+    %em
+      %small= post.created_at.to_date.strftime("%d:%m:%Y")
+    %p= strip_tags((post.body).truncate_words(100))

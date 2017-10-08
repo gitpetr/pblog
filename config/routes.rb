@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  resources :posts, only: [:index, :show]
   resource :dashboard
 
   devise_for :users, controllers: {
