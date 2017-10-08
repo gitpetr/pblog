@@ -16,6 +16,8 @@
 /tmp/*
 /public/uploads/*
 /public/system/*
+/public/tmp/*
+/public/spec/*
 
 !/log/.keep
 !/tmp/.keep
