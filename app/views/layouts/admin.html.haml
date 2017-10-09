@@ -10,6 +10,10 @@
   %body.users
     .container-fluide
       = render 'layouts/main_menu_admin'
-    .container.whitesmoke
-      = render 'layouts/flash_messages'
-      = yield
+    .container
+      .whitesmoke
+        = render 'layouts/flash_messages'
+        = yield
+
+    .container-fluide
+      = render 'layouts/footer'

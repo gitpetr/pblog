@@ -1,12 +1,13 @@
-.jumbotron.jumbotron-home
-  %h1 Hi All!
-  %p
-    Блог про меня и про некоторые шаги в изучении Ruby on Rails.
-    Если Вы опытный ROR разработчик, то для Вас тут нет ничего интересного про разработку от слова "совсем".
-    Если Вы в процессе изучения основ, то на каком то этапе отдельные статьи могут быть полезны.
+.jumbotron-home
+  .jumbotron
+    %h1 Hi All!
+    %p
+      Блог про меня и про некоторые шаги в изучении Ruby on Rails.
+      Если Вы опытный ROR разработчик, то для Вас тут нет ничего интересного про разработку от слова "совсем".
+      Если Вы в процессе изучения основ, то на каком то этапе отдельные статьи могут быть полезны.
 
-  - unless user_signed_in? || admin_signed_in?
-    %p Для того, чтобы увидеть ссылки на статьи
-    = link_to 'Войдите', new_user_session_path, class: 'btn btn-primary'
-    или
-    = link_to 'Зарегистрируйтесь', new_user_registration_path, class: 'btn btn-primary'
+    - unless user_signed_in? || admin_signed_in?
+      %p Для того, чтобы увидеть ссылки на статьи
+      = link_to 'Войдите', new_user_session_path, class: 'btn btn-primary'
+      или
+      = link_to 'Зарегистрируйтесь', new_user_registration_path, class: 'btn btn-primary'
