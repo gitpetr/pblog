@@ -1,19 +1,23 @@
-.panel.panel-default.mg-top-24
+.panel.panel-primary.mg-top-60
   .panel-heading
     .panel-title
       %h2 Новый пароль
-  .panel-body
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
-      = f.hidden_field :reset_password_token
-      - if @minimum_password_length
-        %em
-          ( #{@minimum_password_length}
-          = t('devise.user.characters_minimum')
-          )
-      = f.input :password, autofocus: true, autocomplete: "off"
-      = f.input :password_confirmation, autocomplete: "off"
-      = f.button :submit, "Применить"
-  .panel-footer
-    = render "devise/shared/links"
+.panel.panel-info
+  .panel-heading
+    .panel-title
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        - if @minimum_password_length
+          %em
+            ( #{@minimum_password_length}
+            = t('devise.user.characters_minimum')
+            )
+        = f.input :password, autofocus: true, autocomplete: "off"
+        = f.input :password_confirmation, autocomplete: "off"
+        = f.button :submit, "Применить"
+.panel.panel-primary.mg-top-60
+  .panel-heading
+    .panel-title
+      = render "devise/shared/links"
 
