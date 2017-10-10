@@ -1,7 +1,9 @@
 - if user_signed_in?
-  - flash.now[:error] =  "#{current_user.username} Вы уже вошли в систему"
+  - flash[:error] =  "#{current_user.username} Вы уже вошли в систему"
+  %script $(location).attr('href', "#{root_path}");
 - elsif admin_signed_in?
-  - flash.now[:error] =  "#{current_admin.username} Вы уже вошли в систему"
+  - flash[:error] =  "#{current_admin.username} Вы уже вошли в систему"
+  %script $(location).attr('href', "#{root_path}");
 - else
   .panel.panel-primary.mg-top-60
     .panel-heading
