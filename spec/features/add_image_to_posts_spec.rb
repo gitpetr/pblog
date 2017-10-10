@@ -5,7 +5,7 @@ RSpec.feature "AddImageToPosts", type: :feature do
 
   scenario 'attach image' do
     visit new_admin_session_path
-    fill_in 'Электронная почта', with: admin.email
+    fill_in 'Логин или email', with: admin.email
     fill_in 'Пароль', with: admin.password
     click_on 'Войти'
 

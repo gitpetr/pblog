@@ -6,7 +6,7 @@ RSpec.feature 'CreatePosts', type: :feature do
   scenario 'Authenticated admin create post' do
     # admin = Admin.create!(email: 'admin@ex.com', password: '123456', password_confirmation: '123456')
     visit new_admin_session_path
-    fill_in 'Электронная почта', with: admin.email
+    fill_in 'Логин или email', with: admin.email
     fill_in 'Пароль', with: admin.password
     click_on 'Войти'
 
