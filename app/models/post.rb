@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   validates :title, :body, presence: true
   # mount_uploader :image, ImageForPostUploader
-  has_attached_file :image, styles: { medium: '800x800>', smallthumb: '50x50>' } #, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: '800x800>', smallthumb: '50x50>' }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   extend FriendlyId
