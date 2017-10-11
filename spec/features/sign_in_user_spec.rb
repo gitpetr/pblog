@@ -40,7 +40,7 @@ RSpec.feature 'User Sign in', type: :feature do
     sign_in_user(user)
     visit posts_path
     visit admin_session_path
-    expect(page).to have_content  'Hi All'
+    expect(page).to have_content 'Hi All'
     expect(current_path).to eq root_path
   end
 
@@ -49,7 +49,7 @@ RSpec.feature 'User Sign in', type: :feature do
     sign_in_admin(admin)
     visit admin_posts_path
     visit user_session_path
-    expect(page).to have_content  'Hi All'
+    expect(page).to have_content 'Hi All'
     expect(current_path).to eq root_path
   end
 

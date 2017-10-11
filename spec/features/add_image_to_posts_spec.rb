@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AddImageToPosts", type: :feature do
+RSpec.feature 'AddImageToPosts', type: :feature do
   given(:admin) { create :admin }
 
   scenario 'attach image' do

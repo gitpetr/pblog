@@ -1,4 +1,7 @@
 %h1.center.post-title Заметки по разработке на ROR
 %p.center Описан процесс, последовательность действий без объяснений "зачем" и  "почему", причем некоторые шаги, само-собой разумеющиеся, пропущены.
-
 = render @posts
+
+.center
+  = will_paginate @posts, renderer: BootstrapPagination::Rails
+
