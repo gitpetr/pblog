@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :posts
+    resources :posts do
+      member do
+        put 'public_post', to: 'public_on#public_post'
+        put 'public_off_post', to: 'public_on#public_off_post'
+      end
+    end
     resource :dashboard
     resources :settings
   end

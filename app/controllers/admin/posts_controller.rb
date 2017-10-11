@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   before_action :load_model, only: %i[show edit update destroy]
   layout 'admin'
   def index
-    @posts = Post.order('created_at')
+    @posts = Post.order(:public_on, 'created_at')
   end
 
   def show; end
