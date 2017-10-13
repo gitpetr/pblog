@@ -33,6 +33,7 @@ gem 'paperclip', '~> 5.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 
+
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -60,6 +61,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end

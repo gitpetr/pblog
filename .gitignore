@@ -18,6 +18,12 @@
 /public/system/*
 /public/tmp/*
 /public/spec/*
+app/models/formater.rb
+app/models/worker.rb
+bin/rspec
+bin/spring
+spec/models/worker_spec.rb
+
 
 !/log/.keep
 !/tmp/.keep

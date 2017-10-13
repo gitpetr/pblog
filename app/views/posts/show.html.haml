@@ -1,4 +1,5 @@
 %h1.post-title= @post.title
-.post-image= image_tag @post.image.url(:medium) if @post.image?
+.post-image
+  = image_tag @post.image.url(:medium), class: 'img-responsive center-block' if @post.image?
 
 %p= @post.body.html_safe

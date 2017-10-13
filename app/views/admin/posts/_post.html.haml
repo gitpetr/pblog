@@ -1,7 +1,7 @@
 - if post.public_on
   %tbody
     %tr.public-on
-      %td.td-18= image_tag post.image.url(:smallthumb), class: 'image-show' if post.image?
+      %td.td-18= image_tag post.image.url(:smallthumb), class: 'img-responsive center-block' if post.image?
       %td.td-18.td-right= post.created_at.to_date.strftime("%d:%m:%Y")
       %td.td-18.td-right= post.updated_at.to_date.strftime("%d:%m:%Y")
       %td= link_to post.title, [:admin, post]
@@ -11,7 +11,7 @@
 - else
   %tbody
     %tr.public-off
-      %td.td-18= image_tag post.image.url(:smallthumb), class: 'image-show' if post.image?
+      %td.td-18= image_tag post.image.url(:smallthumb), class: 'img-responsive center-block' if post.image?
       %td.td-18.td-right= post.created_at.to_date.strftime("%d:%m:%Y")
       %td.td-18.td-right= post.updated_at.to_date.strftime("%d:%m:%Y")
       %td= link_to post.title, [:admin, post]
