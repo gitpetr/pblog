@@ -14,7 +14,7 @@
     -if admin_signed_in?
       .container-fluide
         = render 'layouts/main_menu_admin'
-    .container
+    .container.body-min-height
       = render 'layouts/flash_messages'
 
       = yield
