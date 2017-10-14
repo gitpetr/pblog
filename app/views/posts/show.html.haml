@@ -3,3 +3,4 @@
   = image_tag @post.image.url(:medium), class: 'img-responsive center-block' if @post.image?
 
 %p= @post.body.html_safe
+= render 'discus'
