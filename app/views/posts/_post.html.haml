@@ -1,7 +1,7 @@
 .row
   .col-md-1.clearfix
     = image_tag post.image.url(:smallthumb), class: 'img-responsive center-block' if post.image?
-  .col-md-10
+  .col-md-9
     %h3= link_to post.title, post
     %em
       %small= post.created_at.to_date.strftime("%d:%m:%Y")
