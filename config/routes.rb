@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts, only: [:index, :show]
   resource :dashboard
+  resources :tags, only: [:show]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -16,13 +17,14 @@ Rails.application.routes.draw do
     end
     resource :dashboard
     resources :settings
+    resources :tags, only: [:show]
   end
 
   devise_for :admins, controllers: {
     registrations: 'admins/registrations'
   }
 
-  resources :petrablog
+  # resources :petrablog
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

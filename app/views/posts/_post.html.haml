@@ -6,3 +6,5 @@
     %em
       %small= post.created_at.to_date.strftime("%d:%m:%Y")
     %p= strip_tags((post.body).truncate_words(100))
+    %p
+      %small= raw post.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag' }.join(' ')

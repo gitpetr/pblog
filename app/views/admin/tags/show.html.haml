@@ -1,0 +1,15 @@
+%h1
+  = @tag.name
+- if @tag.posts.empty?
+  %h2 Статей нет
+- else
+  .row
+    .col-xs-8
+      %h1 Статьи
+    .col-xs-4
+      .pull-right
+        = link_to 'Новая', new_admin_post_path, class: 'btn btn-primary btn-sm mg-top-24'
+
+  %table.table.table-bordered.table-hover
+    = render 'admin/posts/thead'
+    = render @posts

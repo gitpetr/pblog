@@ -2,5 +2,6 @@
   = f.input :title
   = f.input :body, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } }
   = image_tag @post.image.url(:smallthumb) if @post.image?
+  = f.input :all_tags, label: 'Теги'
   = f.input :image, as: :file
   = f.button :submit, 'Сохранить', class: 'btn btn-primary'

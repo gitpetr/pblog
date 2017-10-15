@@ -13,8 +13,11 @@
     .container
       .whitesmoke.body-min-height
         = render 'layouts/flash_messages'
-
-        = yield
+        .row
+          .col-md-10
+            = yield
+          .col-md-2
+            = render 'layouts/shared/tags_cloud'
 
     .container-fluide
       = render 'layouts/footer'

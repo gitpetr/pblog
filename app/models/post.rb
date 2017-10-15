@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   validates :title, :body, presence: true
   # mount_uploader :image, ImageForPostUploader
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
   has_attached_file :image, styles: { medium: '800x800>', smallthumb: '50x50>' }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
@@ -13,5 +15,15 @@ class Post < ApplicationRecord
 
   def normalize_friendly_id(string)
     string.to_slug.normalize.to_s
+  end
+
+  def all_tags
+    self.tags.map(&:name).join(', ')
+  end
+
+  def all_tags=(names)
+    self.tags = names.split(',').map do |name|
+      Tag.where(name: name.strip).first_or_create!
+    end
   end
 end

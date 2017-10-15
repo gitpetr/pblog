@@ -8,6 +8,10 @@
       %td.td-18= link_to icon('fa-toggle-on i-public-on', 'снять публикацию'), public_off_post_admin_post_path(post), method: 'put'
       %td.td-18= link_to icon('fa-edit', 'редактировать'), edit_admin_post_path(post)
       %td.td-18= link_to icon('fa-trash', 'удалить'), [:admin, post], method: :delete, data: {confirm: 'Действительно удалить?'}
+    %tr
+      %td{colspan: '7'}
+        Теги:
+        %small= raw post.tags.map(&:name).map{ |t| link_to t, admin_tag_path(t), class: 'tag' }.join(' ')
 - else
   %tbody
     %tr.public-off
@@ -18,3 +22,7 @@
       %td.td-18= link_to icon('fa-toggle-off i-public-off', 'опубликовать'), public_post_admin_post_path(post), method: 'put'
       %td.td-18= link_to icon('fa-edit', 'редактировать'), edit_admin_post_path(post)
       %td.td-18= link_to icon('fa-trash', 'удалить'), [:admin, post], method: :delete, data: {confirm: 'Действительно удалить?'}
+    %tr
+      %td{colspan: '7'}
+        Теги:
+        %small= raw post.tags.map(&:name).map{ |t| link_to t, admin_tag_path(t), class: 'tag' }.join(' ')
