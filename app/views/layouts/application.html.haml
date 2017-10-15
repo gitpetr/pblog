@@ -9,7 +9,7 @@
     = javascript_include_tag 'application'
   %body.users
     .container-fluide
-      = render 'layouts/main_menu'
+      = render 'layouts/shared/main_menu'
     .container
       .whitesmoke.body-min-height
         = render 'layouts/flash_messages'
@@ -20,4 +20,4 @@
             = render 'layouts/shared/tags_cloud'
 
     .container-fluide
-      = render 'layouts/footer'
+      = render 'layouts/shared/footer'

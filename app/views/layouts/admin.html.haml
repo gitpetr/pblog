@@ -9,11 +9,11 @@
     = javascript_include_tag 'application'
   %body.users
     .container-fluide
-      = render 'layouts/main_menu_admin'
+      = render 'layouts/shared/main_menu_admin'
     .container
       .whitesmoke.body-min-height
         = yield
 
 
     .container-fluide
-      = render 'layouts/footer'
+      = render 'layouts/shared/footer'

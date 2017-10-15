@@ -10,14 +10,14 @@
   %body.home-layout
     - if user_signed_in?
       .container-fluide
-        = render 'layouts/main_menu'
+        = render 'layouts/shared/main_menu'
     -if admin_signed_in?
       .container-fluide
-        = render 'layouts/main_menu_admin'
+        = render 'layouts/shared/main_menu_admin'
     .container.body-min-height
       = render 'layouts/flash_messages'
 
       = yield
 
     .container-fluide
-      = render 'layouts/footer'
+      = render 'layouts/shared/footer'
