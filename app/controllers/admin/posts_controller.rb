@@ -15,8 +15,9 @@ class Admin::PostsController < ApplicationController
   def create
     @post = Post.new post_params
     if @post.save
-      redirect_to admin_posts_path, success: 'Статья успешно создана'
+      redirect_to admin_posts_path, notice: 'Статья успешно создана', type: :success
     else
+      flash[:error] = 'Не удалось создать статью'
       render :new
     end
   end
@@ -25,15 +26,17 @@ class Admin::PostsController < ApplicationController
 
   def update
     if @post.update post_params
-      redirect_to admin_posts_path
+      redirect_to admin_posts_path, notice: 'Статья успешно обновлена', type: :success
     else
+      flash[:error] = 'Не удалось обновить статью'
       render :edit
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to admin_posts_path
+    redirect_to admin_posts_path , notice: "Статья удалена", type: :success
+
   end
 
   private
