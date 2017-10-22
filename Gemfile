@@ -50,6 +50,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :development do

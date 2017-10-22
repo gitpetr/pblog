@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Admin::PostsController, type: :controller do
-  Post.delete_all
   subject { create(:post) }
 
   describe 'Get #index' do
