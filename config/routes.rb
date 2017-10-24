@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts, only: [:index, :show]
 

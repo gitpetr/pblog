@@ -1,6 +1,8 @@
 module Api 
   module V1 
     class PostsController < Api::ApplicationController
+      before_action :doorkeeper_authorize!
+      
       def index
         @posts = Post.order('created_at DESC')
          
