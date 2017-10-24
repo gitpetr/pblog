@@ -32,6 +32,7 @@ gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 gem 'paperclip', '~> 5.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
+gem 'active_model_serializers'
 
 
 # gem 'redis', '~> 3.0'
