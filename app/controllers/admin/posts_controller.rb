@@ -36,7 +36,6 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to admin_posts_path , notice: "Статья удалена", type: :success
-
   end
 
   private
