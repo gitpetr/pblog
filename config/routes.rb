@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts, only: [:index, :show]
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :posts, only: [:index, :show]
+    end
+  end
+  
   resource :dashboard
   resources :tags, only: [:show]
 
